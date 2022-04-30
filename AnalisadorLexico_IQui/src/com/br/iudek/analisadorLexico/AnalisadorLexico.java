@@ -147,7 +147,7 @@ public class AnalisadorLexico {
 
         if (operRelacionais.contains(palavra)) {
             IQuiToken elemento = new IQuiToken();
-            elemento.setToken("OPER RELACIONAL");
+            elemento.setToken("OPERADOR RELACIONAL");
             elemento.setLexema(palavra);
             tokens.add(elemento);
             return;
