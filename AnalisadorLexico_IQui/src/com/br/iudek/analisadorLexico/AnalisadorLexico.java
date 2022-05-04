@@ -76,7 +76,7 @@ public class AnalisadorLexico {
             
             reader = new BufferedReader(new FileReader(Arquivo));
         } catch (FileNotFoundException ex) {
-            System.out.println("\n\n*** Verificar o nome do arquivo de entrada. Ele deve estar na pasta do compilador ***\n\n");
+            System.out.println("\n\n*** Verificar o nome do arquivo de entrada. Ele deve estar na pasta do Analisador ***\n\n");
         }
     }
 

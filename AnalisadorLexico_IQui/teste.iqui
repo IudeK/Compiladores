@@ -1,4 +1,4 @@
-begin 
+begin
 
 var1,var2,var3: int;
 
@@ -21,13 +21,13 @@ scanner.in.ReadNextLine();
 123var // um erro
 
 if(x > 3) 
-    begin 
+    begin
     x = x - 2;
-    end 
+    end
 else
     begin
     x = x + 2;
-    end 
+    end
 
-end 
+end
 
