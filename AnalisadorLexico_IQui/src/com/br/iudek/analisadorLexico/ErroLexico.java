@@ -8,7 +8,7 @@ public abstract class ErroLexico {
     private String descricao;
     private int numLinha;
     private String nomeArquivo;
-    private static final List<ErroLexico> erros = new ArrayList();
+    private static final List<ErroLexico> erros = new ArrayList<ErroLexico>();
     
     
     public abstract String showErrors();

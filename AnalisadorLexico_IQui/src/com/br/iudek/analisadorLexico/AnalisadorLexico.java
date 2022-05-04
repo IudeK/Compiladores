@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class AnalisadorLexico {
     private BufferedReader reader;
     private String linha;
@@ -17,23 +18,24 @@ public class AnalisadorLexico {
     private String identificador;
     private String literais;
 
-    private final List delimitadores = new ArrayList();
-    private final List operAritmetico = new ArrayList();
-    private final List operRelacionais = new ArrayList();
-    private final List reservadas = new ArrayList();
-    private final List operAtribuicao = new ArrayList();
-    private final List<IQuiToken> tokens = new ArrayList();
+    private final List<String> delimitadores = new ArrayList<String>();
+    private final List<String> operAritmetico = new ArrayList<String>();
+    private final List<String> operRelacionais = new ArrayList<String>();
+    private final List<String> reservadas = new ArrayList<String>();
+    private final List<String> operAtribuicao = new ArrayList<String>();
+    private final List<IQuiToken> tokens = new ArrayList<IQuiToken>();
     private String nomeArquivo;
-
+   
     public AnalisadorLexico(String Arquivo) {
         try {
-            int i = 10;
+            
             this.nomeArquivo = Arquivo;
 
             numerico = ("^[0-9]+|[0-9]+.[0-9]+");
             identificador = ("^([a-z]|[A-Z])+[0-9]*");
             literais = ("^\"(\\w|\\d|[_])*\"");
 
+            
             delimitadores.add(";");
             delimitadores.add(":");
             delimitadores.add("(");
@@ -55,7 +57,6 @@ public class AnalisadorLexico {
             operRelacionais.add("<");
 
             operAtribuicao.add("=");
-            ;
             operAtribuicao.add("++");
             operAtribuicao.add("--");
 
@@ -72,7 +73,7 @@ public class AnalisadorLexico {
             reservadas.add("end");
             reservadas.add("sprintf");
             reservadas.add("scanner.in.ReadNextLine");
-
+            
             reader = new BufferedReader(new FileReader(Arquivo));
         } catch (FileNotFoundException ex) {
             System.out.println("\n\n*** Verificar o nome do arquivo de entrada. Ele deve estar na pasta do compilador ***\n\n");
@@ -88,7 +89,13 @@ public class AnalisadorLexico {
             if (linha == null)
                 break;
 
+            if(linha.equals("begin") || linha.equals("end")){
+                String aux = linha;
+                this.addToken(aux, nLine);
+            }
+            else{
             int size = linha.length();
+
             linha = linha.split("\r")[0];
             caractere = "";
 
@@ -115,16 +122,15 @@ public class AnalisadorLexico {
                         if ((!palavra.equals("")) && (!palavra.contains("/*")))
                             this.addToken(palavra, nLine);
 
-                        // alinhar o token correspondente
                     }
                     palavra = "";
 
                 } else
-
                     palavra = palavra + caractere;
             }
 
         }
+    }
     }
 
     private void addToken(String palavra, int nLine) {
@@ -147,7 +153,7 @@ public class AnalisadorLexico {
 
         if (operRelacionais.contains(palavra)) {
             IQuiToken elemento = new IQuiToken();
-            elemento.setToken("OPERADOR RELACIONAL");
+            elemento.setToken("OPER RELACIONAL");
             elemento.setLexema(palavra);
             tokens.add(elemento);
             return;

@@ -7,7 +7,7 @@ import java.util.List;
 public class Gramatica {
     
     private String nome;
-    private static final List<Gramatica> T_GRAMATICAS = new ArrayList();
+    private static final List<Gramatica> T_SIMBOLOS = new ArrayList<Gramatica>();
 
     public String getNome() {
         return nome;
@@ -18,12 +18,12 @@ public class Gramatica {
     }
 
     public static void addSimbolo(Gramatica simbolo) {
-        if (!Gramatica.T_GRAMATICAS.contains(simbolo))
-            Gramatica.T_GRAMATICAS.add(simbolo);
+        if (!Gramatica.T_SIMBOLOS.contains(simbolo))
+            Gramatica.T_SIMBOLOS.add(simbolo);
     }
 
     public static List<Gramatica> getTabelaDeSimbolos() {
-        return T_GRAMATICAS;
+        return T_SIMBOLOS;
     }
     
     @Override
