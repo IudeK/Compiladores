@@ -7,5 +7,7 @@ Criação de um analisador sintático que trabalhe com a tabela de simbolos gera
 
 Descrição do analisador léxico em: https://github.com/IudeK/Compiladores/blob/main/AnalisadorLexico_IQui/Descri%C3%A7%C3%A3o%20atividade%20-%20Analisador%20Lexico.pdf
 
+Descrição do analisador sintatico em: https://github.com/IudeK/Compiladores/blob/main/AnalisadorLexico_SintaticoIQui/Atividade%202%20-%20analisador%20sint%C3%A1tico.pdf
+
 Gramática da linguagem em: 
 https://github.com/IudeK/Compiladores/blob/main/AnalisadorLexico_IQui/GramaticaIQui.pdf
