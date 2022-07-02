@@ -23,6 +23,7 @@ public class AnalisadorLexico {
     private final List<String> operRelacionais = new ArrayList<String>();
     private final List<String> reservadas = new ArrayList<String>();
     private final List<String> operAtribuicao = new ArrayList<String>();
+    private final List<String> tipo = new ArrayList<String>();
     private final List<IQuiToken> tokens = new ArrayList<IQuiToken>();
     private String nomeArquivo;
    
@@ -57,14 +58,15 @@ public class AnalisadorLexico {
             operRelacionais.add("<");
 
             operAtribuicao.add("=");
-            operAtribuicao.add("++");
-            operAtribuicao.add("--");
 
-            reservadas.add("int");
-            reservadas.add("char");
-            reservadas.add("double");
-            reservadas.add("boolean");
-            reservadas.add("string");
+            tipo.add("int");
+            tipo.add("char");
+            tipo.add("double");
+            tipo.add("boolean");
+            tipo.add("string");
+
+            reservadas.add("++");
+            reservadas.add("--");
             reservadas.add("if");
             reservadas.add("else");
             reservadas.add("false");
@@ -124,6 +126,8 @@ public class AnalisadorLexico {
 
                     }
                     palavra = "";
+                    if(!caractere.equals(" "))
+                        this.addToken(caractere, nLine);
 
                 } else
                     palavra = palavra + caractere;
@@ -154,6 +158,22 @@ public class AnalisadorLexico {
         if (operRelacionais.contains(palavra)) {
             IQuiToken elemento = new IQuiToken();
             elemento.setToken("OPER RELACIONAL");
+            elemento.setLexema(palavra);
+            tokens.add(elemento);
+            return;
+        }
+
+        if (tipo.contains(palavra)) {
+            IQuiToken elemento = new IQuiToken();
+            elemento.setToken("TIPO");
+            elemento.setLexema(palavra);
+            tokens.add(elemento);
+            return;
+        }
+
+        if (delimitadores.contains(palavra)) {
+            IQuiToken elemento = new IQuiToken();
+            elemento.setToken("DELIMITADOR");
             elemento.setLexema(palavra);
             tokens.add(elemento);
             return;
